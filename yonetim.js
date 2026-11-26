@@ -183,6 +183,7 @@
         <label>Yazı ${metinAraclari()}<textarea class="big" name="metin" placeholder="Paragrafların arasında bir boş satır bırak.">${e(y.metin)}</textarea>
           <span class="hint">Şiirlerde dizeleri alt alta yaz, kıtaların arasına bir boş satır bırak.</span></label>
         <label>Özet <span class="hint">(boş bırakırsan ilk cümlelerden oluşur)</span><textarea name="ozet" style="min-height:70px">${e(y.ozet || '')}</textarea></label>
+        <label>Bu yazının şarkısı <span class="hint">(isteğe bağlı YouTube bağlantısı; yazının sonunda çalar)</span><input name="video" type="url" value="${e(y.video || '')}" placeholder="https://youtu.be/…"></label>
         <details><summary style="cursor:pointer;font-weight:600;color:var(--soft)">Yazının devamı başka yerde mi?</summary>
           <div class="f" style="margin-top:12px"><label>Devamının bağlantısı<input name="devamLink" type="url" value="${e(y.devamLink || '')}" placeholder="https://…"></label>
           <label class="chk"><input type="checkbox" name="devami" ${y.devami ? 'checked' : ''}> Sonuna "Devamı yakında" yaz</label></div></details>
@@ -194,6 +195,7 @@
     f.onsubmit = ev => {
       ev.preventDefault();
       const n = { baslik: f.baslik.value.trim(), tarih: f.tarih.value || bugun(), kategori: f.kategori.value.trim() || 'Kalemimden', ozet: f.ozet.value.trim(), metin: f.metin.value.replace(/\r/g, '').trim() };
+      if (f.video.value.trim()) n.video = f.video.value.trim();
       if (f.devamLink.value.trim()) n.devamLink = f.devamLink.value.trim();
       if (f.devami.checked) n.devami = 'yakında';
       if (i >= 0) L[i] = n; else L.unshift(n);

@@ -90,6 +90,7 @@ Güneşin sıcaklığında dinlensin artık, karnı doymuş tilkilerim.`
   },
   {
     baslik: "Gladyatörlerin kılıçları çarpışan her yıldırım…",
+    video: "https://youtu.be/nX9UXukMxH4",
     tarih: "2026-01-11",
     kategori: "Kalemimden",
     ozet: "",
@@ -493,6 +494,7 @@ Güneş ruhunu alır bizim aşkımızdan.`
   },
   {
     baslik: "Yalnızlığın Valsi",
+    video: "https://youtu.be/l_j2tR5fTh4",
     tarih: "2021-09-26",
     kategori: "Kalemimden",
     ozet: "",

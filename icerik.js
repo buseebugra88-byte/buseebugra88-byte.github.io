@@ -369,23 +369,28 @@ window.ICERIK = {
   "sarkilarim": [
     {
       "ad": "Seninim Ben",
-      "link": "https://youtu.be/X1aYDhJqc2s"
+      "link": "https://youtu.be/X1aYDhJqc2s",
+      "not": "Söz: Buse Buğra"
     },
     {
-      "ad": "Şarkı 2",
-      "link": "https://youtu.be/O3l8p0bO4Zs"
+      "ad": "Bil Ki",
+      "link": "https://youtu.be/O3l8p0bO4Zs",
+      "not": "Söz: Buse Buğra"
     },
     {
-      "ad": "Şarkı 3",
-      "link": "https://youtu.be/nX9UXukMxH4"
+      "ad": "Gladyatör",
+      "link": "https://youtu.be/nX9UXukMxH4",
+      "not": "Söz: Buse Buğra"
     },
     {
-      "ad": "Şarkı 4",
-      "link": "https://youtu.be/l_j2tR5fTh4"
+      "ad": "Yalnızlığın Valsi",
+      "link": "https://youtu.be/l_j2tR5fTh4",
+      "not": "Söz: Buse Buğra"
     },
     {
-      "ad": "Şarkı 5",
-      "link": "https://youtu.be/0z7btWpVm3E"
+      "ad": "Gökyüzünde Kahkahalar",
+      "link": "https://youtu.be/0z7btWpVm3E",
+      "not": "Söz: Buse Buğra"
     }
   ]
 };

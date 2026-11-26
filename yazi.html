@@ -75,6 +75,7 @@
       <a class="back" href="yazilar.html">Tüm yazılar</a>
       <header><span class="kat">${e(y.kategori)}</span><h1>${e(y.baslik)}</h1><span class="when">${tarih(y.tarih)}, ${sure(y.metin)} dk okuma</span></header>
       <div class="prose">${govde(y.metin)}</div>
+      ${SITE.ytId(y.video) ? `<section class="song-of"><p class="kat">Bu yazının şarkısı</p><div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/${SITE.ytId(y.video)}?rel=0" title="${e(y.baslik)} şarkısı" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div></section>` : ''}
       ${y.devamLink ? `<p class="devam"><a class="btn solid" href="${e(y.devamLink)}" target="_blank" rel="noopener">${e(y.devamYazi || 'Devamını oku')}</a></p>` : y.devami ? `<p class="devam yakinda">Devamı yakında…</p>` : ''}
       <nav class="pager">${onceki ? `<a href="#${onceki.id}"><span>Önceki yazı</span>${e(onceki.baslik)}</a>` : '<span></span>'}${sonraki ? `<a href="#${sonraki.id}" class="next"><span>Sonraki yazı</span>${e(sonraki.baslik)}</a>` : ''}</nav>
     </div>`;
