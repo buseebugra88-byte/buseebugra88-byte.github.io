@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hakkımda — Buse Buğra</title>
+<meta name="description" content="Buse'nin romanları, yazıları ve fizyoterapi alanındaki çalışmaları.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<script src="icerik.js"></script>
+<script>document.documentElement.dataset.tema=(window.ICERIK&&ICERIK.tema)||"pudra"</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><i></i>Buse Buğra</a>
+    <nav class="nav" aria-label="Ana menü">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="romanlar.html">Romanlar</a>
+      <a href="yazilar.html">Yazılar</a>
+      <a href="okuma.html">Okuma</a>
+      <a href="fizyoterapi.html">Fizyoterapi</a>
+      <a href="hakkimda.html" aria-current="page">Hakkımda</a>
+      <a href="iletisim.html">İletişim</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="band">
+    <div class="wrap about">
+      <div class="text">
+        <h1>Hakkımda</h1>
+        <p class="lead">Merhaba, ben Buse Buğra. Kendimi bildim bileli hikâyelerle büyüdüm; yazmak benim için hem bir kaçış hem de bir eve dönüş.</p>
+        <div class="prose">
+          <p>Gerilimden psikolojik kurguya, oradan romantik hikâyelere uzanan romanlar yazıyorum. Karakterlerimin zihnine girmeyi, onların korkularını ve umutlarını sayfa sayfa açmayı seviyorum. Yazdığım her romanda biraz kalbimi bırakıyorum.</p>
+          <p>Fizyoterapistim ve Hacettepe Üniversitesi'nde yüksek lisansımı sürdürüyorum. Nörolojik rehabilitasyon ve sağlıkta yapay zekâ en çok merak ettiğim konular.</p>
+          <p>Yazmanın dışında mektup yazmayı, kitapların arasında kaybolmayı, müzik dinlemeyi ve işime yarayacak küçük dijital araçları kendi ellerimle tasarlamayı seviyorum.</p>
+        </div>
+        <div class="btns"><a class="btn solid" href="romanlar.html">Romanlarım</a><a class="btn ghost" href="iletisim.html">Bana yaz</a></div>
+      </div>
+      <figure class="portrait" id="foto"></figure>
+    </div>
+  </section>
+  <section class="band mist">
+    <div class="wrap">
+      <ul class="facts wide">
+        <li><span>Yazdıklarım</span><b>Gerilim, psikolojik kurgu ve romantik romanlar</b></li>
+        <li><span>Meslek</span><b>Fizyoterapist</b></li>
+        <li><span>Eğitim</span><b>Hacettepe Üniversitesi, fizyoterapi ve rehabilitasyon yüksek lisansı</b></li>
+        <li><span>Sevdiklerim</span><b>Mektuplar, kitaplar ve müzik</b></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 Buse Buğra</span>
+    <nav aria-label="Alt menü">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="romanlar.html">Romanlar</a>
+      <a href="yazilar.html">Yazılar</a>
+      <a href="okuma.html">Okuma</a>
+      <a href="fizyoterapi.html">Fizyoterapi</a>
+      <a href="hakkimda.html">Hakkımda</a>
+      <a href="iletisim.html">İletişim</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script>
+{
+  const f = window.ICERIK && ICERIK.fotograf, el = document.getElementById('foto');
+  el.innerHTML = f ? `<img src="${SITE.esc(f)}" alt="Buse Buğra">` : '<div class="mono" aria-hidden="true">B</div>';
+}
+</script>
+</body>
+</html>

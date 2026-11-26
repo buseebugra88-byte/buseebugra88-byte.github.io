@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Romanlar — Buse Buğra</title>
+<meta name="description" content="Buse'nin romanları, yazıları ve fizyoterapi alanındaki çalışmaları.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<script src="icerik.js"></script>
+<script>document.documentElement.dataset.tema=(window.ICERIK&&ICERIK.tema)||"pudra"</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><i></i>Buse Buğra</a>
+    <nav class="nav" aria-label="Ana menü">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="romanlar.html" aria-current="page">Romanlar</a>
+      <a href="yazilar.html">Yazılar</a>
+      <a href="okuma.html">Okuma</a>
+      <a href="fizyoterapi.html">Fizyoterapi</a>
+      <a href="hakkimda.html">Hakkımda</a>
+      <a href="iletisim.html">İletişim</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="band">
+    <div class="wrap intro">
+      <h1>Romanlarım</h1>
+      <p class="lead">Her biri farklı bir dünyada geçiyor: kimi karanlık bir labirentte, kimi bir müzik okulunun koridorlarında, kimi bir dünya turnesinin sahne ışıkları altında. Hepsinde biraz kalbimi bıraktım.</p>
+      <nav class="jump" id="jump" aria-label="Romanlar"></nav>
+    </div>
+  </section>
+  <section class="band mist" style="padding-block:0">
+    <div class="wrap" id="list"></div>
+  </section>
+  <section class="band">
+    <div class="wrap">
+      <p class="note">Romanlarımın tamamı yayınevlerine sunulmak üzere hazırlandığı için burada yalnızca kısa tanıtımlarına ve ilk bölümlerine yer veriyorum. Yayın ya da iş birliği için <a href="iletisim.html">bana yazabilirsiniz</a>.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 Buse Buğra</span>
+    <nav aria-label="Alt menü">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="romanlar.html">Romanlar</a>
+      <a href="yazilar.html">Yazılar</a>
+      <a href="okuma.html">Okuma</a>
+      <a href="fizyoterapi.html">Fizyoterapi</a>
+      <a href="hakkimda.html">Hakkımda</a>
+      <a href="iletisim.html">İletişim</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script>
+{
+  const e = SITE.esc, kitaplar = (window.ICERIK && ICERIK.romanlar) || [];
+  document.getElementById('jump').innerHTML = kitaplar.map(r => `<a href="#${SITE.slug(r.ad)}">${e(r.ad)}</a>`).join('');
+  document.getElementById('list').innerHTML = kitaplar.map(r => `
+    <article class="novel" id="${SITE.slug(r.ad)}">
+      ${SITE.kapak(r)}
+      <div class="body">
+        <h2>${e(r.ad)}</h2>
+        <div class="tags"><span class="tag">${e(r.tur)}</span><span class="tag ${r.durum === 'Yazılıyor' ? '' : 'ok'}">${e(r.durum)}</span></div>
+        <p class="lead">${e(r.tanitim)}</p>
+        ${r.ilkBolum ? `<div class="btns"><a class="btn solid" href="oku.html#${SITE.slug(r.ad)}">İlk bölümü oku</a></div>` : ''}
+        <ul class="meta">
+          ${r.karakterler ? `<li><span>Karakterler</span><b>${e(r.karakterler)}</b></li>` : ''}
+          <li><span>Tür</span><b>${e(r.tur)}</b></li>
+          <li><span>Dil</span><b>Türkçe</b></li>
+        </ul>
+        ${(r.sarkilar || []).length ? `<details class="songs"><summary>Romanın şarkıları <span>${r.sarkilar.length} şarkı</span></summary><ol>${r.sarkilar.map(t => `<li><a href="https://open.spotify.com/search/${encodeURIComponent(t.ad + ' ' + t.sanatci)}" target="_blank" rel="noopener"><b>${e(t.ad)}</b><span>${e(t.sanatci)}</span></a></li>`).join('')}</ol></details>` : ''}
+      </div>
+    </article>`).join('');
+}
+</script>
+</body>
+</html>

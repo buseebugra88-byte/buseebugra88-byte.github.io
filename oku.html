@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>İlk bölüm — Buse Buğra</title>
+<meta name="description" content="Buse'nin romanları, yazıları ve fizyoterapi alanındaki çalışmaları.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<script src="icerik.js"></script>
+<script>document.documentElement.dataset.tema=(window.ICERIK&&ICERIK.tema)||"pudra"</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><i></i>Buse Buğra</a>
+    <nav class="nav" aria-label="Ana menü">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="romanlar.html" aria-current="page">Romanlar</a>
+      <a href="yazilar.html">Yazılar</a>
+      <a href="okuma.html">Okuma</a>
+      <a href="fizyoterapi.html">Fizyoterapi</a>
+      <a href="hakkimda.html">Hakkımda</a>
+      <a href="iletisim.html">İletişim</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <article class="band read" id="oku"><div class="wrap narrow"><p class="lead">Yükleniyor…</p></div></article>
+</main>
+
+
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 Buse Buğra</span>
+    <nav aria-label="Alt menü">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="romanlar.html">Romanlar</a>
+      <a href="yazilar.html">Yazılar</a>
+      <a href="okuma.html">Okuma</a>
+      <a href="fizyoterapi.html">Fizyoterapi</a>
+      <a href="hakkimda.html">Hakkımda</a>
+      <a href="iletisim.html">İletişim</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script>
+{
+  const e = SITE.esc, kutu = document.getElementById('oku');
+  const goster = async () => {
+    const r = ((window.ICERIK && ICERIK.romanlar) || []).find(x => SITE.slug(x.ad) === location.hash.slice(1));
+    if (!r || !r.ilkBolum) { kutu.innerHTML = `<div class="wrap narrow"><h1>Bu bölüm henüz burada değil.</h1><p><a class="btn ghost" href="romanlar.html">Romanlara dön</a></p></div>`; return; }
+    document.title = r.ad + ' — İlk bölüm — Buse Buğra';
+    let metin = '';
+    try { const c = await fetch(r.ilkBolum); if (!c.ok) throw 0; metin = await c.text(); }
+    catch { kutu.innerHTML = `<div class="wrap narrow"><h1>Bölüm açılamadı.</h1><p class="lead">Dosya bulunamadı: ${e(r.ilkBolum)}</p><p><a class="btn ghost" href="romanlar.html">Romanlara dön</a></p></div>`; return; }
+    const govde = metin.replace(/\r/g, '').trim().split(/\n\s*\n/).map(p => {
+      p = p.trim();
+      if (/^##\s/.test(p)) return `<h3 class="alt">${e(p.replace(/^#+\s*/, ''))}</h3>`;
+      if (/^#\s/.test(p)) return `<h2>${e(p.replace(/^#+\s*/, ''))}</h2>`;
+      return `<p>${e(p).replace(/\n/g, '<br>')}</p>`;
+    }).join('');
+    kutu.innerHTML = `<div class="wrap narrow">
+      <a class="back" href="romanlar.html#${SITE.slug(r.ad)}">${e(r.ad)}</a>
+      <header><span class="kat">İlk bölüm</span><h1>${e(r.ad)}</h1><span class="when">${e(r.tur)}</span></header>
+      <div class="prose">${govde}</div>
+      <p class="devam yakinda">Romanın devamı yayınevi sürecinde. Haberdar olmak isterseniz <a href="iletisim.html">bana yazabilirsiniz</a>.</p>
+    </div>`;
+  };
+  addEventListener('hashchange', goster);
+  goster();
+}
+</script>
+</body>
+</html>

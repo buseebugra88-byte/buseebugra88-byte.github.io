@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Romanlar — Buse Buğra</title>
+<meta name="description" content="Buse'nin romanları, yazıları ve fizyoterapi alanındaki çalışmaları.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<script src="icerik.js"></script>
+<script>document.documentElement.dataset.tema=(window.ICERIK&&ICERIK.tema)||"pudra"</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><i></i>Buse Buğra</a>
+    <nav class="nav" aria-label="Ana menü">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="romanlar.html">Romanlar</a>
+      <a href="yazilar.html" aria-current="page">Yazılar</a>
+      <a href="okuma.html">Okuma</a>
+      <a href="fizyoterapi.html">Fizyoterapi</a>
+      <a href="hakkimda.html">Hakkımda</a>
+      <a href="iletisim.html">İletişim</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="band">
+    <div class="wrap intro">
+      <h1>Yazılar</h1>
+      <p class="lead">Romanlarımın dışında kalan her şey burada: fizyoterapi ve sinir bilimi üzerine notlar, yazarlık üzerine düşünceler ve kalemimden dökülen kısa metinler.</p>
+      <div class="jump" id="filtre" role="group" aria-label="Kategoriler"></div>
+    </div>
+  </section>
+  <section class="band mist">
+    <div class="wrap"><ol class="posts" id="liste"></ol></div>
+  </section>
+</main>
+
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 Buse Buğra</span>
+    <nav aria-label="Alt menü">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="romanlar.html">Romanlar</a>
+      <a href="yazilar.html">Yazılar</a>
+      <a href="okuma.html">Okuma</a>
+      <a href="fizyoterapi.html">Fizyoterapi</a>
+      <a href="hakkimda.html">Hakkımda</a>
+      <a href="iletisim.html">İletişim</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script src="yazilar.js"></script>
+<script>
+{
+  const e = SITE.esc;
+  const yazilar = (window.YAZILAR || []).filter(y => y && y.baslik).map(y => ({ ...y, id: SITE.slug(y.baslik) }));
+  const tarih = t => { const d = new Date(t + 'T12:00:00'); return isNaN(d) ? e(t) : d.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' }); };
+  const sure = m => Math.max(1, Math.round(String(m || '').split(/\s+/).length / 200));
+  const ozet = y => { if (y.ozet) return y.ozet; const t = String(y.metin || '').replace(/^[>#\s]+/gm, '').replace(/\s+/g, ' ').trim(); return t.length > 170 ? t.slice(0, t.lastIndexOf(' ', 170)) + '…' : t; };
+
+  const kategoriler = ['Tümü', ...new Set(['Fizyoterapi ve sinir bilimi', 'Yazarlık', 'Kalemimden', ...yazilar.map(y => y.kategori).filter(Boolean)])];
+  let secili = 'Tümü';
+  const filtre = document.getElementById('filtre'), liste = document.getElementById('liste');
+  const ciz = () => {
+    filtre.innerHTML = kategoriler.map(k => `<button type="button" aria-pressed="${k === secili}">${e(k)}</button>`).join('');
+    const gorunen = yazilar.filter(y => secili === 'Tümü' || y.kategori === secili);
+    liste.innerHTML = gorunen.length ? gorunen.map(y => `
+      <li><a class="post" href="yazi.html#${y.id}">
+        <span class="when">${tarih(y.tarih)}</span>
+        <span class="what"><span class="kat">${e(y.kategori)}</span><b>${e(y.baslik)}</b><span class="ozet">${e(ozet(y))}</span></span>
+        <span class="go">${sure(y.metin)} dk okuma</span>
+      </a></li>`).join('')
+      : `<li class="empty"><b>${secili === 'Tümü' ? 'İlk yazılar yolda.' : 'Bu başlıkta henüz yazı yok.'}</b><span>Yakında burada olacak; o zamana kadar <a href="romanlar.html">romanlarıma</a> göz atabilirsiniz.</span></li>`;
+  };
+  filtre.addEventListener('click', ev => { const b = ev.target.closest('button'); if (b) { secili = b.textContent; ciz(); } });
+  ciz();
+}
+</script>
+</body>
+</html>

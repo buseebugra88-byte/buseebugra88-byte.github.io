@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>İletişim — Buse Buğra</title>
+<meta name="description" content="Buse'nin romanları, yazıları ve fizyoterapi alanındaki çalışmaları.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<script src="icerik.js"></script>
+<script>document.documentElement.dataset.tema=(window.ICERIK&&ICERIK.tema)||"pudra"</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><i></i>Buse Buğra</a>
+    <nav class="nav" aria-label="Ana menü">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="romanlar.html">Romanlar</a>
+      <a href="yazilar.html">Yazılar</a>
+      <a href="okuma.html">Okuma</a>
+      <a href="fizyoterapi.html">Fizyoterapi</a>
+      <a href="hakkimda.html">Hakkımda</a>
+      <a href="iletisim.html" aria-current="page">İletişim</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="band contact">
+    <div class="wrap">
+      <h1>Bana yazın</h1>
+      <p class="lead">Romanlarım, yayın ya da iş birliği teklifleri, fizyoterapi üzerine sorular ya da sadece bir merhaba için. Her mesajı okuyorum.</p>
+      <div class="mail">
+        <span>E-posta</span>
+        <b id="adres"></b>
+        <div class="btns"><a class="btn solid" id="yaz" href="#">E-posta gönder</a><button class="btn ghost" id="kopya" type="button">Adresi kopyala</button></div>
+        <small id="durum" role="status"></small>
+      </div>
+      <div class="mail" id="sosyal" hidden>
+        <span>Beni takip edin</span>
+        <p class="lead" style="margin:0">Okuduklarımı ve yazma yolculuğumu Instagram'da paylaşıyorum.</p>
+        <div class="btns" id="sosyal-btn"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 Buse Buğra</span>
+    <nav aria-label="Alt menü">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="romanlar.html">Romanlar</a>
+      <a href="yazilar.html">Yazılar</a>
+      <a href="okuma.html">Okuma</a>
+      <a href="fizyoterapi.html">Fizyoterapi</a>
+      <a href="hakkimda.html">Hakkımda</a>
+      <a href="iletisim.html">İletişim</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script>
+{
+  const a = (window.ICERIK && ICERIK.eposta) || '';
+  const I = window.ICERIK || {}, sb = document.getElementById('sosyal-btn');
+  if (I.instagram) sb.insertAdjacentHTML('beforeend', `<a class="btn solid" href="https://www.instagram.com/${encodeURIComponent(I.instagram)}/" target="_blank" rel="noopener">Instagram: @${SITE.esc(I.instagram)}</a>`);
+  if (I.threads) sb.insertAdjacentHTML('beforeend', `<a class="btn ghost" href="https://www.threads.net/@${encodeURIComponent(I.threads)}" target="_blank" rel="noopener">Threads</a>`);
+  if (sb.children.length) document.getElementById('sosyal').hidden = false;
+  document.getElementById('adres').textContent = a || 'Yakında';
+  document.getElementById('yaz').href = 'mailto:' + a;
+  document.getElementById('kopya').addEventListener('click', async () => {
+    const d = document.getElementById('durum');
+    try { await navigator.clipboard.writeText(a); d.textContent = 'Adres kopyalandı.'; } catch { d.textContent = 'Kopyalanamadı; adresi seçip kopyalayabilirsiniz.'; }
+  });
+}
+</script>
+</body>
+</html>

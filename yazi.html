@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yazı — Buse Buğra</title>
+<meta name="description" content="Buse'nin romanları, yazıları ve fizyoterapi alanındaki çalışmaları.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+<script src="icerik.js"></script>
+<script>document.documentElement.dataset.tema=(window.ICERIK&&ICERIK.tema)||"pudra"</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><i></i>Buse Buğra</a>
+    <nav class="nav" aria-label="Ana menü">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="romanlar.html">Romanlar</a>
+      <a href="yazilar.html" aria-current="page">Yazılar</a>
+      <a href="okuma.html">Okuma</a>
+      <a href="fizyoterapi.html">Fizyoterapi</a>
+      <a href="hakkimda.html">Hakkımda</a>
+      <a href="iletisim.html">İletişim</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <article class="band read" id="yazi"></article>
+</main>
+
+
+<footer class="foot">
+  <div class="wrap">
+    <span>© 2026 Buse Buğra</span>
+    <nav aria-label="Alt menü">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="romanlar.html">Romanlar</a>
+      <a href="yazilar.html">Yazılar</a>
+      <a href="okuma.html">Okuma</a>
+      <a href="fizyoterapi.html">Fizyoterapi</a>
+      <a href="hakkimda.html">Hakkımda</a>
+      <a href="iletisim.html">İletişim</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+<script src="yazilar.js"></script>
+<script>
+{
+  const e = SITE.esc;
+  const yazilar = (window.YAZILAR || []).filter(y => y && y.baslik).map(y => ({ ...y, id: SITE.slug(y.baslik) }));
+  const tarih = t => { const d = new Date(t + 'T12:00:00'); return isNaN(d) ? e(t) : d.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' }); };
+  const sure = m => Math.max(1, Math.round(String(m || '').split(/\s+/).length / 200));
+  const ozet = y => { if (y.ozet) return y.ozet; const t = String(y.metin || '').replace(/^[>#\s]+/gm, '').replace(/\s+/g, ' ').trim(); return t.length > 170 ? t.slice(0, t.lastIndexOf(' ', 170)) + '…' : t; };
+
+  const kutu = document.getElementById('yazi');
+  const govde = m => String(m || '').trim().split(/\n\s*\n/).map(p => {
+    p = p.trim();
+    const img = p.match(/^!\[([^\]]*)\]\(([^)\s]+)\)$/);
+    if (img) return `<figure class="pimg"><img src="${e(img[2])}" alt="${e(img[1])}" loading="lazy">${img[1] ? `<figcaption>${e(img[1])}</figcaption>` : ''}</figure>`;
+    if (p.startsWith('## ')) return `<h2>${e(p.slice(3))}</h2>`;
+    if (p.startsWith('>')) return `<blockquote>${e(p.replace(/^>\s?/gm, '')).replace(/\n/g, '<br>')}</blockquote>`;
+    return `<p>${e(p).replace(/\n/g, '<br>')}</p>`;
+  }).join('');
+  const goster = () => {
+    const id = location.hash.slice(1), i = yazilar.findIndex(y => y.id === id), y = yazilar[i];
+    if (!y) { kutu.innerHTML = `<div class="wrap narrow"><h1>Bu yazıyı bulamadım.</h1><p class="lead">Adresi kontrol edin ya da tüm yazılara dönün.</p><p><a class="btn ghost" href="yazilar.html">Tüm yazılar</a></p></div>`; return; }
+    document.title = y.baslik + ' — Buse Buğra';
+    const onceki = yazilar[i + 1], sonraki = yazilar[i - 1];
+    kutu.innerHTML = `<div class="wrap narrow">
+      <a class="back" href="yazilar.html">Tüm yazılar</a>
+      <header><span class="kat">${e(y.kategori)}</span><h1>${e(y.baslik)}</h1><span class="when">${tarih(y.tarih)}, ${sure(y.metin)} dk okuma</span></header>
+      <div class="prose">${govde(y.metin)}</div>
+      ${y.devamLink ? `<p class="devam"><a class="btn solid" href="${e(y.devamLink)}" target="_blank" rel="noopener">${e(y.devamYazi || 'Devamını oku')}</a></p>` : y.devami ? `<p class="devam yakinda">Devamı yakında…</p>` : ''}
+      <nav class="pager">${onceki ? `<a href="#${onceki.id}"><span>Önceki yazı</span>${e(onceki.baslik)}</a>` : '<span></span>'}${sonraki ? `<a href="#${sonraki.id}" class="next"><span>Sonraki yazı</span>${e(sonraki.baslik)}</a>` : ''}</nav>
+    </div>`;
+    scrollTo(0, 0);
+  };
+  addEventListener('hashchange', goster);
+  goster();
+}
+</script>
+</body>
+</html>
