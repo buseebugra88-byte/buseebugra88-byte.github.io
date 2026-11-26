@@ -372,16 +372,20 @@ window.ICERIK = {
       "link": "https://youtu.be/X1aYDhJqc2s"
     },
     {
-      "ad": "Seninim Ben (2)",
+      "ad": "Şarkı 2",
       "link": "https://youtu.be/O3l8p0bO4Zs"
     },
     {
-      "ad": "Seninim Ben (3)",
+      "ad": "Şarkı 3",
       "link": "https://youtu.be/nX9UXukMxH4"
     },
     {
-      "ad": "Seninim Ben (4)",
+      "ad": "Şarkı 4",
       "link": "https://youtu.be/l_j2tR5fTh4"
+    },
+    {
+      "ad": "Şarkı 5",
+      "link": "https://youtu.be/0z7btWpVm3E"
     }
   ]
 };
