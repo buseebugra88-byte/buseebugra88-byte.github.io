@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /yonetim.html
+Sitemap: https://buseebugra88-byte.github.io/sitemap.xml
