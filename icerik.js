@@ -8,7 +8,6 @@ window.ICERIK = {
   "eposta": "buseebugra88@gmail.com",
   "instagram": "busebugra.author",
   "threads": "busebugra.author",
-  "youtube": "https://www.youtube.com/@buseebugra",
   "fotograf": "fotograflar/buse-mwxa23qf.jpg",
   "tema": "kafe",
   "uygulamalar": [
@@ -364,33 +363,6 @@ window.ICERIK = {
       "durum": "Tamamlandı",
       "renk": "pudra",
       "tanitim": "Aerial dansçı Rosalie, altı aylık bir dünya turnesinin eşiğinde kendini koreograf Rhys'le aynı sahnede, sonra da aynı kameraların önünde bulur. Kameralar için başlayan bir rol, ışıklar sönünce de sürebilir mi?"
-    }
-  ],
-  "sarkilarim": [
-    {
-      "ad": "Seninim Ben",
-      "link": "https://youtu.be/X1aYDhJqc2s",
-      "not": "Söz: Buse Buğra"
-    },
-    {
-      "ad": "Bil Ki",
-      "link": "https://youtu.be/O3l8p0bO4Zs",
-      "not": "Söz: Buse Buğra"
-    },
-    {
-      "ad": "Gladyatör",
-      "link": "https://youtu.be/nX9UXukMxH4",
-      "not": "Söz: Buse Buğra"
-    },
-    {
-      "ad": "Yalnızlığın Valsi",
-      "link": "https://youtu.be/l_j2tR5fTh4",
-      "not": "Söz: Buse Buğra"
-    },
-    {
-      "ad": "Gökyüzünde Kahkahalar",
-      "link": "https://youtu.be/0z7btWpVm3E",
-      "not": "Söz: Buse Buğra"
     }
   ]
 };
