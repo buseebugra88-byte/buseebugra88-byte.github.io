@@ -40,7 +40,7 @@
       </div>
       <div class="mail" id="sosyal" hidden>
         <span>Beni takip edin</span>
-        <p class="lead" style="margin:0">Okuduklarımı ve yazma yolculuğumu Instagram'da paylaşıyorum.</p>
+        <p class="lead" style="margin:0">Okuduklarımı ve yazma yolculuğumu Instagram'da, şarkılarımı YouTube'da paylaşıyorum.</p>
         <div class="btns" id="sosyal-btn"></div>
       </div>
     </div>
@@ -69,6 +69,7 @@
   const a = (window.ICERIK && ICERIK.eposta) || '';
   const I = window.ICERIK || {}, sb = document.getElementById('sosyal-btn');
   if (I.instagram) sb.insertAdjacentHTML('beforeend', `<a class="btn solid" href="https://www.instagram.com/${encodeURIComponent(I.instagram)}/" target="_blank" rel="noopener">Instagram: @${SITE.esc(I.instagram)}</a>`);
+  if (I.youtube) sb.insertAdjacentHTML('beforeend', `<a class="btn ghost" href="${SITE.esc(I.youtube)}" target="_blank" rel="noopener">YouTube</a>`);
   if (I.threads) sb.insertAdjacentHTML('beforeend', `<a class="btn ghost" href="https://www.threads.net/@${encodeURIComponent(I.threads)}" target="_blank" rel="noopener">Threads</a>`);
   if (sb.children.length) document.getElementById('sosyal').hidden = false;
   document.getElementById('adres').textContent = a || 'Yakında';

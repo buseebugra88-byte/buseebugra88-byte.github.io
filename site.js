@@ -16,4 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const ekle = (ad, url) => { const a = document.createElement('a'); a.href = url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = ad; f.appendChild(a); };
   if (I.instagram) ekle('Instagram', 'https://www.instagram.com/' + encodeURIComponent(I.instagram) + '/');
   if (I.threads) ekle('Threads', 'https://www.threads.net/@' + encodeURIComponent(I.threads));
+  if (I.youtube) ekle('YouTube', I.youtube);
 });
+
+/* YouTube bağlantısından video kimliğini çıkarır */
+SITE.ytId = u => { const m = String(u || '').match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/); return m ? m[1] : ''; };

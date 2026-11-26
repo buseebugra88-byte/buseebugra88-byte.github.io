@@ -8,6 +8,7 @@ window.ICERIK = {
   "eposta": "buseebugra88@gmail.com",
   "instagram": "busebugra.author",
   "threads": "busebugra.author",
+  "youtube": "https://www.youtube.com/@buseebugra",
   "fotograf": "fotograflar/buse-mwxa23qf.jpg",
   "tema": "kafe",
   "uygulamalar": [
@@ -364,5 +365,6 @@ window.ICERIK = {
       "renk": "pudra",
       "tanitim": "Aerial dansçı Rosalie, altı aylık bir dünya turnesinin eşiğinde kendini koreograf Rhys'le aynı sahnede, sonra da aynı kameraların önünde bulur. Kameralar için başlayan bir rol, ışıklar sönünce de sürebilir mi?"
     }
-  ]
+  ],
+  "sarkilarim": []
 };

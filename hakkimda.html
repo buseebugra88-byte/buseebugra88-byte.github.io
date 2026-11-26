@@ -43,6 +43,13 @@
       <figure class="portrait" id="foto"></figure>
     </div>
   </section>
+  <section class="band" id="muzik" hidden>
+    <div class="wrap">
+      <div class="head"><h2>Şarkılarım</h2><a id="ytk" href="#" target="_blank" rel="noopener">YouTube kanalım</a></div>
+      <p class="lead" style="margin-bottom:28px">Kelimelerim bazen bir melodiye dönüşüyor. Yazdığım sözlerden doğan şarkılar burada.</p>
+      <div class="songs-grid" id="sarkilar"></div>
+    </div>
+  </section>
   <section class="band mist">
     <div class="wrap">
       <ul class="facts wide">
@@ -74,7 +81,20 @@
 <script src="site.js"></script>
 <script>
 {
-  const f = window.ICERIK && ICERIK.fotograf, el = document.getElementById('foto');
+  const I = window.ICERIK || {}, e = SITE.esc;
+  const S = (I.sarkilarim || []).filter(s => SITE.ytId(s.link));
+  if (S.length || I.youtube) {
+    document.getElementById('muzik').hidden = false;
+    const yk = document.getElementById('ytk'); if (I.youtube) yk.href = I.youtube; else yk.remove();
+    document.getElementById('sarkilar').innerHTML = S.map(s => { const id = SITE.ytId(s.link); return `<figure class="song">
+      <button type="button" class="play" data-id="${e(id)}" aria-label="${e(s.ad)} şarkısını oynat"><img src="https://i.ytimg.com/vi/${e(id)}/hqdefault.jpg" alt="" loading="lazy"><span></span></button>
+      <figcaption><b>${e(s.ad)}</b>${s.not ? `<small>${e(s.not)}</small>` : ''}</figcaption></figure>`; }).join('');
+    document.getElementById('sarkilar').addEventListener('click', ev => {
+      const b = ev.target.closest('.play'); if (!b) return;
+      b.outerHTML = `<div class="yt"><iframe src="https://www.youtube-nocookie.com/embed/${b.dataset.id}?autoplay=1&rel=0" title="Şarkı" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`;
+    });
+  }
+  const f = I.fotograf, el = document.getElementById('foto');
   el.innerHTML = f ? `<img src="${SITE.esc(f)}" alt="Buse Buğra">` : '<div class="mono" aria-hidden="true">B</div>';
 }
 </script>

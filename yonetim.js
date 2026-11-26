@@ -285,6 +285,9 @@
         <div class="two"><label>E-posta<input type="email" name="eposta" value="${e(I.eposta || '')}"></label>
           <label>Instagram kullanıcı adı<input name="instagram" value="${e(I.instagram || '')}"></label>
           <label>Threads kullanıcı adı<input name="threads" value="${e(I.threads || '')}"></label></div>
+        <label>YouTube kanalının bağlantısı<input name="youtube" type="url" value="${e(I.youtube || '')}" placeholder="https://www.youtube.com/@…"></label>
+        <label>Şarkılarım <span class="hint">Her satıra bir şarkı: Şarkı adı — YouTube bağlantısı (Hakkımda sayfasında görünür)</span>
+          <textarea class="songs-ed" name="sarkilarim" style="min-height:140px" placeholder="Yalnızlığın Valsi — https://youtu.be/…">${e((I.sarkilarim || []).map(s => `${s.ad} — ${s.link}`).join('\n'))}</textarea></label>
         <label>Hakkımda fotoğrafın<div class="imgrow">${I.fotograf ? `<img class="thumb" src="${e(gorsel(I.fotograf))}" alt="">` : '<span class="thumb"></span>'}<button type="button" class="btn ghost xs" id="fs">${I.fotograf ? 'Fotoğrafı değiştir' : 'Fotoğraf yükle'}</button></div></label>
         <fieldset style="border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:8px"><legend style="padding:0 6px;font-weight:600;color:var(--soft);font-size:14px">Sitede görünen uygulamalar</legend>
           ${(I.uygulamalar || []).map((a, k) => `<label class="chk"><input type="checkbox" name="app${k}" ${a.gizli ? '' : 'checked'}> ${e(a.ad)}</label>`).join('')}</fieldset>
@@ -294,7 +297,9 @@
     $('#fs').onclick = async () => { const d = await fotoSec(); if (!d) return; try { I.fotograf = await fotoYukle(d, 'buse'); degisti('ICERIK'); } catch (err) { bildir('Fotoğraf yüklenemedi: ' + err.message, 6000); } };
     f.onsubmit = ev => {
       ev.preventDefault();
-      ['ad', 'unvan', 'tema', 'eposta', 'instagram', 'threads'].forEach(k => I[k] = f[k].value.trim());
+      ['ad', 'unvan', 'tema', 'eposta', 'instagram', 'threads', 'youtube'].forEach(k => I[k] = f[k].value.trim());
+      const eski = Object.fromEntries((I.sarkilarim || []).map(s => [s.link, s]));
+      I.sarkilarim = f.sarkilarim.value.split('\n').map(s => s.trim()).filter(Boolean).map(s => { const m = s.match(/^(.*?)\s+[—–-]\s+(https?:\/\/\S+)$/); return m ? { ...(eski[m[2]] || {}), ad: m[1].trim(), link: m[2] } : null; }).filter(Boolean);
       I.instagram = I.instagram.replace(/^@/, ''); I.threads = I.threads.replace(/^@/, '');
       (I.uygulamalar || []).forEach((a, k) => { if (f['app' + k].checked) delete a.gizli; else a.gizli = true; });
       document.documentElement.dataset.tema = I.tema;
