@@ -366,5 +366,22 @@ window.ICERIK = {
       "tanitim": "Aerial dansçı Rosalie, altı aylık bir dünya turnesinin eşiğinde kendini koreograf Rhys'le aynı sahnede, sonra da aynı kameraların önünde bulur. Kameralar için başlayan bir rol, ışıklar sönünce de sürebilir mi?"
     }
   ],
-  "sarkilarim": []
+  "sarkilarim": [
+    {
+      "ad": "Seninim Ben",
+      "link": "https://youtu.be/X1aYDhJqc2s"
+    },
+    {
+      "ad": "Seninim Ben (2)",
+      "link": "https://youtu.be/O3l8p0bO4Zs"
+    },
+    {
+      "ad": "Seninim Ben (3)",
+      "link": "https://youtu.be/nX9UXukMxH4"
+    },
+    {
+      "ad": "Seninim Ben (4)",
+      "link": "https://youtu.be/l_j2tR5fTh4"
+    }
+  ]
 };
