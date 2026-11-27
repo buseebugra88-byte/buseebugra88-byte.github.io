@@ -43,7 +43,7 @@ window.ICERIK = {
       "ad": "Dijital Kütüphanem",
       "grup": "Yazarlık ve okuma",
       "ikon": "ikonlar/kutuphane.png",
-      "adres": "https://buseebugra88-byte.github.io/dijital-kutuphane/",
+      "adres": "https://buseebugra88-byte.github.io/dijital-kutuphane/?misafir",
       "aciklama": "E-kitaplar, PDF'ler ve makaleler için kişisel kütüphane; okuma takibi ve serilere göre raflar."
     },
     {
